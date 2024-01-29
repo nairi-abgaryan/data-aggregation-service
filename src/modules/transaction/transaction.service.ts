@@ -7,13 +7,19 @@ import { AggregatedTransaction } from '../aggregation/aggregation.service';
 
 const readFileAsync = promisify(fs.readFile);
 
+export enum TransactionType {
+  PAYOUT = 'payout',
+  SPENT = 'spent',
+  EARNED = 'earned',
+  PAID_OUT = 'paidOut',
+}
+
 export interface Transaction {
   userId: string;
   amount: number;
-  date: Date;
   id: string;
-  createdAt: Date;
-  type: 'payout' | 'spent' | 'earned' | 'paidOut';
+  createdAt: string;
+  type: TransactionType;
 }
 
 @Injectable()
